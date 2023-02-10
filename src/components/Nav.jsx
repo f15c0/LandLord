@@ -1,8 +1,22 @@
 import { Link, useLocation } from "react-router-dom";
 //import logo from '../assets/logo.svg';
 import land from '../assets/logo.png';
+import { useEffect, useState } from "react";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const Navbar = () => {
+    const [profile, setProfile]= useState('Sign-In');
+    const auth = getAuth()
+
+    //Checking if user is authenticated in the header
+    useEffect(() => {
+        onAuthStateChanged(auth, (user)=>{
+            if(user){
+                setProfile(auth.currentUser.displayName);
+                console.log(auth.currentUser)
+            }else { setProfile('Sign-In')}
+        })
+    }, [auth]);
 
     const location = useLocation();
     
@@ -26,7 +40,10 @@ const Navbar = () => {
                 <ul className="flex space-x-10 text-sm text-slate-500 font-semibold">
                     <li><Link to="/" className={activeNav('/')?activeNavLink:null}>Home</Link></li> 
                     <li><Link to="/offers" className={activeNav('/offers')?activeNavLink:null}>Offers</Link></li>
-                    <li><Link to="/sign-in" className={activeNav('/sign-in')?activeNavLink:null}>Sign-in</Link></li>
+                    <li><Link to="/profile" className={activeNav('/sign-in')?activeNavLink:null}>
+                             {profile}
+                        </Link>
+                    </li>
                 </ul>
             </nav>
         </div>
