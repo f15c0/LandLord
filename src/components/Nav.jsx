@@ -13,7 +13,6 @@ const Navbar = () => {
         onAuthStateChanged(auth, (user)=>{
             if(user){
                 setProfile(auth.currentUser.displayName);
-                console.log(auth.currentUser)
             }else { setProfile('Sign-In')}
         })
     }, [auth]);
