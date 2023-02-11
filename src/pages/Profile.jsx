@@ -8,13 +8,8 @@ const Profile = () => {
 
     return ( 
         <section>
-               <Header title='User Profile' subtitle={`Welcome Back Dennis!`}/>
-               <UserProfile/>
-            
-               
-               
-                  
-                
+               <Header title='User Profile' subtitle={`Welcome Home Dennis!`}/>
+               <UserProfile/> 
         </section>
      );
 }
