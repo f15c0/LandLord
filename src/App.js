@@ -10,6 +10,7 @@ import SignUp from './pages/SignUp';
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SecurePage from './components/SecurePage';
+import Listing from './pages/CreateListing';
 
 function App() {
   return (
@@ -25,9 +26,11 @@ function App() {
             {/* Secure Route */}
             <Route path='/profile' element={<SecurePage/>}>
                <Route path='/profile' element={<Profile/>}/>
+               <Route path='/profile/create-listing' element={<Listing/>}/>
             </Route>
             <Route path='/sign-in' element={<SignIn/>}/>
             <Route path='/sign-up' element={<SignUp/>}/>
+          
             <Route exact={true} path='/forgot-password' element={<ForgotPass/>}/>
         </Routes>
       

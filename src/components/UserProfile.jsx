@@ -8,7 +8,7 @@ import {IoMdHome} from 'react-icons/io';
 
 
   //Defining Styles
-  const editStyle="xs:text-xs text-red-700 ml-1 cursor-pointer transition ease-in-out duration-200 hover:text-red-800" ;
+  const editStyle="xs:text-xs text-primary ml-1 cursor-pointer transition ease-in-out duration-200 hover:text-red-800" ;
 
   const applyStyle="xs:text-xs text-blue-700 ml-1 cursor-pointer transition ease-in-out duration-200 hover:text-blue-800";
 
@@ -71,7 +71,7 @@ const UserProfile = () => {
                                     className={edit ? "w-full focus:border-l-4 focus:ring-0 focus:border-2 focus:border-red-700 bg-white form-input px-4 py-3 rounded-b-2xl font-semibold border-l-4 border-l-red-700 text-sm   sm:text-base text-black border-1 border-red-800" :
                                             
                                     // Changes Styles
-                                    `w-full form-input  px-4 py-3 rounded-b-2xl font-semibold border-l-4 bg-gray-50 border-l-blue-800 text-sm sm:text-base text-gray-700 border-1 border-gray-300`}
+                                    `w-full form-input  px-4 py-3 rounded-b-2xl font-semibold border-l-4 bg-gray-50 border-l-blue-800 text-sm sm:text-base text-gray-500 border-1 border-gray-300`}
                                     onChange={e=>setFormData({...formData, name:e.target.value})}
                                     name="name"
                                     disabled={!edit}
@@ -79,7 +79,7 @@ const UserProfile = () => {
                             />
                             <input type="email" 
                                     value={email} 
-                                    className="w-full form-input border-l-4 border-l-blue-800 px-4 py-3 my-4 rounded-b-2xl bg-gray-50 font-semibold text-base text-gray-700 border-1 border-gray-300"
+                                    className="w-full form-input border-l-4 border-l-blue-800 px-4 py-3 my-4 rounded-b-2xl bg-gray-50 font-semibold text-base text-gray-500 border-1 border-gray-300"
                                     name="email"
                                     disabled    
                             />
@@ -96,13 +96,16 @@ const UserProfile = () => {
                             </div>
                 </form>
                 
-                <button className="flex justify-center items-center text-sm text-center my-8 mt-2 px-6 rounded-lg transition ease-in-out py-3 border-0 bg-blue-700 text-white hover:bg-blue-600 w-full uppercase  hover:shadow-md active:bg-blue-800 shadow-gray-500">
-                    <Link to="./create-listing" className="flex justify-center items-center">
-                            <IoMdHome className=" text-blue-800 text-lg sm:text-2xl shadow-lg bg-white rounded-full border-0"/>
-                            <span className="mx-1 text-xs sm:text-sm font-medium"> Sell or Rent Your Home</span>
-                            
-                    </Link>
-                </button>
+                <Link to="./create-listing">
+                    <button className="flex justify-center items-center text-sm text-center my-8 mt-2 px-6 rounded-lg transition ease-in-out py-3 border-0 bg-blue-700 text-white hover:bg-blue-600 w-full uppercase  hover:shadow-md active:bg-blue-800 shadow-gray-500">
+                        <span  className="flex justify-center items-center">
+                                <IoMdHome className=" text-blue-800 text-lg sm:text-2xl shadow-lg bg-white rounded-full border-0"/>
+                                <span className="mx-1 text-xs sm:text-sm font-medium"> Sell or Rent Your Home</span>
+                                
+                        </span>
+                    </button>
+                </Link>
+                
            </div>
         </>
      );
