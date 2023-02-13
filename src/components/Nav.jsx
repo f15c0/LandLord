@@ -40,8 +40,6 @@ const Navbar = () => {
             <header className=" flex justify-between items-center">
                 <span onClick={()=>setIsOpen(!isOpen)} className="sm:hidden  text-3xl cursor-pointer hover:text-red-800 transition ease-in-out text-primary">
                     {isOpen?<GiEntryDoor/>:<GiExitDoor />}
-                    
-                    
                 </span>
                 
 
