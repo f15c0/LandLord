@@ -4,7 +4,7 @@ import Logo from "../assets/logo.png"
 const Footer = () => {
     return ( 
         
-<footer className="relative w-full  bottom-0  bg-slate-50  shadow md:px-6 md:py-6 dark:bg-slate-500">
+<footer className="w-full left-0 right-0 bottom-0  bg-slate-50  shadow md:px-6 md:py-6 dark:bg-slate-500">
     <div className="sm:flex sm:items-center sm:justify-between">
         <Link to='/' className="flex items-center mx-2 mt-2 pt-2 mb-4 sm:mb-0">
             <img src={Logo} className="h-8 mr-3" alt="LandLord Logo" />

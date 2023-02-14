@@ -1,6 +1,11 @@
+import PageTitle from "../components/PageTitle";
+
 const Offer = () => {
     return (
-        <main className="h-screen">the offer goes here</main>
+        <>
+        <PageTitle title="AVAILABLE OFFERS"/>
+        <section className="h-screen">the offer goes here</section>
+        </>
       );
 }
  

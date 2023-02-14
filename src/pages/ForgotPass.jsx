@@ -3,13 +3,9 @@ import { Link } from "react-router-dom";
 import OAuth from "../components/OAuth";
 import { toast } from "react-toastify";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
-import Header from "../components/Header";
+import PageTitle from "../components/PageTitle";
 
 const ForgotPass = () => {
-
-    //Page header
-    const title="Let's get you in!";
-
 
 const [formData, setFormData]=useState({
     email:""
@@ -31,7 +27,7 @@ const handleSubmit= async (e)=>{
 
     return (
         <section>
-          <Header title={title}/>
+          <PageTitle title="Forgot your keys?" subtitle="Let's Get you in"/>
            <div className="flex justify-center flex-wrap items-center px-6 py-12 mx-auto max-w-7xl">
                 <div className="w-full md:w-[70%] lg:w-[50%]">
                         <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8a2V5fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60" alt="Key"

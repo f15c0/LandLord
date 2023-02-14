@@ -6,7 +6,7 @@ import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase
 import {db} from '../firebase';
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { toast } from "react-toastify";
-import Header from "../components/Header";
+import PageTitle from "../components/PageTitle";
 
 
 
@@ -49,7 +49,7 @@ const  handleSubmit= async (e)=>{
 
     return (
         <section>
-                <Header title='Sign up'/>
+                <PageTitle title="SIGN UP"/>
            <div className="flex justify-center flex-wrap items-center px-6 py-3 mx-auto max-w-7xl">
                 <div className="w-full md:w-[70%] lg:w-[50%]">
                         <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8a2V5fGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=600&q=60" alt="Key"

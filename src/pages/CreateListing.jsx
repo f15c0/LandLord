@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Header from "../components/Header";
 import {AiFillCar} from 'react-icons/ai';
-import {MdLocationOn} from 'react-icons/md'
+import {MdLocationOn} from 'react-icons/md';
+import PageTitle from "../components/PageTitle";
 
 const Listing = () => {
 
@@ -23,8 +23,8 @@ const onSubmit=(e)=>{
      const formLabel="font-semibold sm:text-sm text-xs";
      
     return ( 
-        <main className="max-w-md px-2 mx-auto">
-                <Header title='Create Listing' subtitle="Let's get you started"/>
+        <div className="max-w-md px-2 mx-auto">
+                <PageTitle title='Create Listing' subtitle="Let's get you started"/>
                 <form onSubmit={onSubmit} className="pb-4 mx-4">
                     <p className={formLabel}>Sell / Rent</p>
                     <div className="mt-1 space-x-6 flex justify-between items-center">
@@ -260,7 +260,8 @@ const onSubmit=(e)=>{
                         className="text-xs sm:text-sm text-primary text-center mt-2 px-6 rounded transition ease-in-out pt-3 border-b-8 border-b-primary font-semibold bg-transparent  hover:bg-blue-400 hover:text-white w-full uppercase  hover:shadow-md active:bg-blue-800">Create
                     </button>
                 </form>
-        </main>
+        </div>
+   
      );
 }
  
