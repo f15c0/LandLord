@@ -1,5 +1,5 @@
 import PageTitle from "../components/PageTitle";
-import UserProfile from "../components/UserProfile";
+import UserProfile from "./UserProfile";
 
 const Profile = () => {
 

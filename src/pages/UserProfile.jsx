@@ -16,9 +16,6 @@ const UserProfile = () => {
     const navigate = useNavigate();
     //Getting User Details from Authentication
 
-    
-    
-
     const auth = getAuth();
 
     //Setting User State
@@ -83,7 +80,7 @@ const UserProfile = () => {
                                     name="email"
                                     disabled    
                             />
-                            <div className="sm:text-lg md:text-base text-sm flex justify-between content-center items-center whitespace-nowrap mb-4" >
+                            <div className="sm:text-lg md:text-base text-xs flex justify-between content-center items-center whitespace-nowrap mb-4" >
                                 <p className="flex items-center ">Do you want to change your name? 
                                     <span onClick={()=>
                                         {   edit && onSubmit();
@@ -92,7 +89,7 @@ const UserProfile = () => {
                                         }>
                                        {edit ? (<span className={applyStyle}>Apply Changes</span>): <span className={editStyle}>Edit</span>} 
                                     </span></p>
-                                <p className="text-blue-700 cursor-pointer hover:text-blue-800 transition ease-in-out duration-200 text-sm sm:text-base" onClick={logOut}>Sign Out</p>
+                                <p className="text-blue-700 cursor-pointer hover:text-blue-800 transition ease-in-out duration-200 text-xs sm:text-base" onClick={logOut}>Sign Out</p>
                             </div>
                 </form>
                 

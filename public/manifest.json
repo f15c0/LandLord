@@ -1,6 +1,6 @@
 {
   "short_name": "LandLord",
-  "name": "LandLord Realtor App",
+  "name": "LandLord | Efiewura ",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#632222",
   "background_color": "#ffffff"
 }
