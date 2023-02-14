@@ -1,6 +1,6 @@
 const Offer = () => {
     return (
-        <>the offer goes here</>
+        <main className="h-screen">the offer goes here</main>
       );
 }
  

@@ -11,18 +11,17 @@ import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SecurePage from './components/SecurePage';
 import Listing from './pages/CreateListing';
+import Footer from './components/Footer';
 
 function App() {
   return (
     <>
-      
-      <BrowserRouter>
+     <BrowserRouter>
       <Navbar/>
         <Routes>
-          
             <Route path='/' element={<Home/>}/>
             <Route path='/offers' element={<Offer/>}/>
-            
+      
             {/* Secure Route */}
             <Route path='/profile' element={<SecurePage/>}>
                <Route path='/profile' element={<Profile/>}/>
@@ -30,11 +29,11 @@ function App() {
             </Route>
             <Route path='/sign-in' element={<SignIn/>}/>
             <Route path='/sign-up' element={<SignUp/>}/>
-          
             <Route exact={true} path='/forgot-password' element={<ForgotPass/>}/>
         </Routes>
-      
+        <Footer/>
       </BrowserRouter>
+      
       {/* Toast goes here */}
       <ToastContainer
                     position="top-center"
@@ -47,6 +46,7 @@ function App() {
                     draggable
                     theme="light"
         />
+         
     </>
   );
 }

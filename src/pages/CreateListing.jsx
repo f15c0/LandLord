@@ -25,7 +25,6 @@ const onSubmit=(e)=>{
     return ( 
         <main className="max-w-md px-2 mx-auto">
                 <Header title='Create Listing' subtitle="Let's get you started"/>
-                
                 <form onSubmit={onSubmit} className="pb-4 mx-4">
                     <p className={formLabel}>Sell / Rent</p>
                     <div className="mt-1 space-x-6 flex justify-between items-center">

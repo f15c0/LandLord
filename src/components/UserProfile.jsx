@@ -60,12 +60,12 @@ const UserProfile = () => {
             }
     }
      const editRef = useRef();
-    return ( 
-        <>  
-            <div className="md:w-[50%] mx-auto px-4 flex flex-col justify-center">         
+    return (  
+        <main className="h-screen">
+            <section className="md:w-[50%] mx-auto px-4 flex flex-col justify-center">         
                 <form >
-                   
-                          <input    type="text" 
+                          <input    
+                                    type="text" 
                                     ref={editRef}
                                     value={name} 
                                     className={edit ? "w-full focus:border-l-4 focus:ring-0 focus:border-2 focus:border-red-700 bg-white form-input px-4 py-3 rounded-b-2xl font-semibold border-l-4 border-l-red-700 text-sm   sm:text-base text-black border-1 border-red-800" :
@@ -104,10 +104,9 @@ const UserProfile = () => {
                                 
                         </span>
                     </button>
-                </Link>
-                
-           </div>
-        </>
+                </Link>   
+           </section>
+         </main>
      );
 }
  
