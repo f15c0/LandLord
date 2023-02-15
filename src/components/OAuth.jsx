@@ -39,7 +39,7 @@ const OAuth = () => {
     }
 
     return ( 
-        <button type='button' onClick={googleSubmit} className="flex justify-center items-center text-sm text-center mt-2 px-6 rounded-lg transition ease-in-out py-3 border-none bg-red-700 text-white hover:bg-red-400 w-full uppercase shadow-sm hover:shadow-md active:bg-red-800 shadow-gray-500">
+        <button type='button' onClick={googleSubmit} className="flex justify-center items-center text-xs sm:text-sm text-center mt-2 px-6 rounded-lg transition ease-in-out py-2 border-none bg-red-700 text-white hover:bg-red-400 w-full uppercase shadow-sm hover:shadow-md active:bg-red-800 shadow-gray-500">
             <FcGoogle className='mx-1 text-2xl bg-white rounded-md'/>
               Continue with Google
         </button>
