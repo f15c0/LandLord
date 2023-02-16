@@ -36,7 +36,7 @@ function App() {
       
       {/* Toast goes here */}
       <ToastContainer
-                    position="top-center"
+                    position="bottom-center"
                     autoClose={2000}
                     hideProgressBar={true}
                     newestOnTop={false}

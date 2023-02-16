@@ -2,29 +2,41 @@ import { useState } from "react";
 import {AiFillCar} from 'react-icons/ai';
 import {MdLocationOn} from 'react-icons/md';
 import PageTitle from "../components/PageTitle";
+import Spinner from "../components/Spinner";
+import { toast } from "react-toastify";
+import {getStorage, ref, getDownloadURL, uploadBytesResumable} from 'firebase/storage';
+import { getAuth } from "firebase/auth";
+import { v4 as uuidv4 } from 'uuid';
 
 const Listing = () => {
+//Getting auth
+const auth = getAuth();
 
+//setting Geolocation State
+const [geoLocationEnabled, setGeoLocationEnabled]=useState(true)
+
+//Onchange function to handle input form data
 const onChange =(e)=>{
-
         const{id, value, type, checked, files}=e.target;
             
             //Checking input type is a file
             if (type==="file") {
-                const reader = new FileReader();
-                    reader.onload =(e)=>{
-                        setFormData((prevState)=>({
-                            ...prevState, 
+                // const reader = new FileReader();
+                //     reader.onload =(e)=>{
+                //         setFormData((prevState)=>({
+                //             ...prevState, 
                             
-                            images:[...prevState.images, {
-                                    name: files[0].name,
-                                    data: e.target.result
-                                 },
-                             ]
-                        }));
-                    };
-                    reader.readAsDataURL(files[0]);
-                    console.log(e.target.files)
+                //             images:[...prevState.images, {
+                //                     name: files[0].name,
+                //                     data: e.target.result
+                //                  },
+                //              ]
+                //         }));
+                //     };
+                    // reader.readAsDataURL(files[0]);
+                    setFormData((prevState)=>({
+                        ...prevState, images:files
+                    }))
             } else{
                 setFormData((prevState)=>({
                     ...prevState,
@@ -32,20 +44,83 @@ const onChange =(e)=>{
                 }));
             } 
 
-
     };
 
-const onSubmit=(e)=>{
+    //Setting Loader State
+const [loading, setLoading]= useState(false)
+
+const onSubmit=async (e)=>{
          e.preventDefault();
-        console.log(formData)
+            setLoading(true);
+
+            //Image Upload
+        const storeImage= async (image)=>{
+
+            return new Promise((resolve, reject)=>{
+                const storage = getStorage();
+                const filename = `${auth.currentUser.uid}-${image.name}-${uuidv4()}`;
+
+                const storageRef=ref(storage, filename);
+                
+                const uploadTask= uploadBytesResumable(storageRef, image);
+                    uploadTask.on('state_changed', 
+                            (snapshot) => {
+                                // Observe state change events such as progress, pause, and resume
+                                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                                console.log('Upload is ' + progress + '% done');
+                                switch (snapshot.state) {
+                                case 'paused':
+                                    console.log('Upload is paused');
+                                    break;
+                                case 'running':
+                                    console.log('Upload is running');
+                                    break;
+                                default:
+                                    
+                                }
+                            }, 
+                        (error) => {
+                            // Handle unsuccessful uploads
+                             reject(error);
+                        }, 
+                        () => {
+                            // Handle successful uploads on complete
+                            // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+                                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                                resolve(downloadURL);
+                            });
+                        }
+                        );
+            })
+           
+
+            
+        }
+        const imgUrls = await Promise.all(
+            [...formData.images].map((image)=>storeImage(image)
+                )).catch((error)=>{
+                        setLoading(false);
+                        toast.error("image not uploaded");
+                        return;
+                    });
+
+        console.log(imgUrls);
 }    
+
+
 
     const [formData, setFormData] = useState({
         type:'rent', name:'', bedroom:1, bathroom:1, carPark:false, furnished:false, address:'',
-        description:'', offer:false, price:0, discount:0, images:[]
+        description:'', offer:false, price:0, discount:0, images:{},
+        longitude:0, latitude:0
     })
 
-     const formLabel="font-semibold sm:text-sm text-xs";
+    const formLabel="font-semibold sm:text-sm text-xs";
+
+     if(loading){
+        return <Spinner/>
+     }
      
     return ( 
         <div className="max-w-md px-2 mx-auto">
@@ -194,7 +269,39 @@ const onSubmit=(e)=>{
                                 required/>
                         </div>
                         </div>
-                    
+
+                        {/* GeoLocation ---- Latitude and Longitude */}
+
+                        {/* Conditionally Rendering the Geolocation Fields */}
+
+                            {!geoLocationEnabled && (
+                            <div className="flex justify-between space-x-4">
+                            <div className="w-[35%]">
+                                    <p className={formLabel}>Latitude</p>
+                                        <input type="number" 
+                                            id="latitude"
+                                            value={formData.latitude}
+                                            onChange={onChange}
+                                            className="w-full text-xs sm:text-sm rounded-md transition duration-150 ease-in-out" 
+                                            required
+                                            />
+                             </div>
+
+                             <div className="w-[35%]">
+                                <p className={formLabel}>Longitude</p>
+                                    <input type="number" 
+                                        id="longitude"
+                                        value={formData.longitude}
+                                        onChange={onChange}
+                                        className="w-full text-xs sm:text-sm rounded-md transition duration-150 ease-in-out" 
+                                        />
+                             </div>
+                        </div>
+                        
+                        )} {/* End of Conditional Rendering the Geolocation */}
+                        
+
+
 
                                 {/* Description Form field */}
                     <div>        
@@ -261,6 +368,8 @@ const onSubmit=(e)=>{
                                         />
                              </div>
                         </div>
+
+                        {/* Image Upload Field */}
                         <div className="py-2 mt-3">
                             <label className="block mb-1 text-sm text-center font-medium text-gray-900 dark:text-primary" htmlFor="image">
                                 Upload image
