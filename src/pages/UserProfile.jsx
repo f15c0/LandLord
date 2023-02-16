@@ -73,7 +73,7 @@ const UserProfile = () => {
                                     name="name"
                                     disabled={!edit}
                                     required
-                            />
+                            /> 
                             <input type="email" 
                                     value={email} 
                                     className="w-full form-input border-l-4 border-l-blue-800 px-4 py-3 my-4 rounded-b-2xl bg-gray-50 font-semibold text-base text-gray-500 border-1 border-gray-300"

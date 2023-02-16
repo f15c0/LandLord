@@ -6,9 +6,34 @@ import PageTitle from "../components/PageTitle";
 const Listing = () => {
 
 const onChange =(e)=>{
-        const{id, value, checked}=e.target;
-        setFormData({...formData,  [id]:e.target.type==='checkbox'? checked:value});
-    }
+
+        const{id, value, type, checked, files}=e.target;
+            
+            //Checking input type is a file
+            if (type==="file") {
+                const reader = new FileReader();
+                    reader.onload =(e)=>{
+                        setFormData((prevState)=>({
+                            ...prevState, 
+                            
+                            images:[...prevState.images, {
+                                    name: files[0].name,
+                                    data: e.target.result
+                                 },
+                             ]
+                        }));
+                    };
+                    reader.readAsDataURL(files[0]);
+                    console.log(e.target.files)
+            } else{
+                setFormData((prevState)=>({
+                    ...prevState,
+                    [id]:type==='checkbox'? checked:value
+                }));
+            } 
+
+
+    };
 
 const onSubmit=(e)=>{
          e.preventDefault();
@@ -17,7 +42,7 @@ const onSubmit=(e)=>{
 
     const [formData, setFormData] = useState({
         type:'rent', name:'', bedroom:1, bathroom:1, carPark:false, furnished:false, address:'',
-        description:'', offer:false, price:0, discount:0, image:''
+        description:'', offer:false, price:0, discount:0, images:[]
     })
 
      const formLabel="font-semibold sm:text-sm text-xs";
@@ -244,7 +269,7 @@ const onSubmit=(e)=>{
                             
                             <input 
                                 className="block shadow-xl shadow-slate-300 w-full text-sm text-gray-900 border border-gray-300 rounded cursor-pointer bg-gray-50 dark:text-white focus:outline-none dark:bg-primary dark:border-gray-600 dark:placeholder-gray-400 transition duration-150 ease-in-out" 
-                                id="image" 
+                                id="images" 
                                 type="file" 
                                 onChange={onChange}
                                 accept=".jpg,.jpeg,.png"
