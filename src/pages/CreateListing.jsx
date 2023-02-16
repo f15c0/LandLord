@@ -7,6 +7,9 @@ import { toast } from "react-toastify";
 import {getStorage, ref, getDownloadURL, uploadBytesResumable} from 'firebase/storage';
 import { getAuth } from "firebase/auth";
 import { v4 as uuidv4 } from 'uuid';
+import {addDoc, collection, serverTimestamp} from "firebase/firestore";
+import { db } from "../firebase";
+
 
 const Listing = () => {
 //Getting auth
@@ -105,7 +108,21 @@ const onSubmit=async (e)=>{
                         return;
                     });
 
-        console.log(imgUrls);
+
+                    //fisco: Sieve out data before submitting
+        const formDataCopy ={
+            ...formData,
+                imgUrls,
+                timestamp:serverTimestamp(),
+        };
+
+        delete formDataCopy.images;
+        !formDataCopy.offer && delete formDataCopy.discount;
+        const docRef = await addDoc(collection(db, "listings"), formDataCopy); 
+        if(docRef){
+            setLoading(false);
+           toast.success("listing successful")
+        }
 }    
 
 
