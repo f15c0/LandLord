@@ -1,7 +1,8 @@
 // import { useState } from 'react';
 import {RiHomeSmileLine} from 'react-icons/ri';
 import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css'
+import 'react-loading-skeleton/dist/skeleton.css';
+import OTest from '../components/OTest';
 
 
 const Home = () => {
@@ -16,7 +17,7 @@ const Home = () => {
                 {welcome}
                <span className='px-1 mx-1'>{<RiHomeSmileLine/>||<Skeleton borderRadius={50}/>}</span>
             </h1>
-            
+                  
         </section>
      );
 }

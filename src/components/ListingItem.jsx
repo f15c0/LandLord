@@ -6,7 +6,7 @@ import {ImLocation2} from "react-icons/im";
 import { useState } from "react";
 
 
-const ListingCard = ({listing, id, title}) => {
+const ListingCard = ({listing, id}) => {
 
     const [loading, setLoading] =useState(false);
     // function Box({ children }) {
@@ -29,10 +29,10 @@ const ListingCard = ({listing, id, title}) => {
     
     return ( 
 
-        <li className="relative bg-white flex flex-col py-2 my-2 justify-between items-center shadow-md hover:shadow-xl rounded-lg transition-shadow duration-150 overflow-hidden m-[10px]">
+        <li className="relative bg-white flex flex-col py-2 my-2 justify-between items-center shadow-md hover:shadow-xl rounded-xl transition-shadow duration-150 overflow-hidden m-[10px]">
             <Link className="contents" to={`/category/${listing.type}/${id}`}>
                 {/* <h1>{title || <Skeleton />}</h1> */}
-              {( <img src={listing.imgUrls[0]} className="h-[170px] w-full object-cover hover:scale-105 transition-scale duration-200 ease-in-out"
+              {( <img src={listing.imgUrls[0]} className="h-[195px] w-full object-cover hover:scale-105 transition-scale duration-200 ease-in-out"
                     loading="lazy"
                     alt={listing.name}/>) || <Skeleton height={170}/>}
                 
@@ -56,6 +56,7 @@ const ListingCard = ({listing, id, title}) => {
                                 <p className="text-xs">{listing.bathrooms > 1 ? `${listing.bathrooms} Baths`: "1 Bath"}</p>
                         </div>
                     </div>
+                    <p className="sm:text-sm text-xs text-gray-200">{listing.author}</p>
                 </div>
                
                

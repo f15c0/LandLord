@@ -6,6 +6,7 @@ import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import { toast } from "react-toastify";
 import PageTitle from "../components/PageTitle";
 import landman from "../assets/landman.png";
+import OTest from "../components/OTest";
 
 const SignIn = () => {
 const navigate = useNavigate();
@@ -76,10 +77,14 @@ const handleSubmit= async (e)=>{
                         
                         <button type="submit" className="text-center mt-6 px-6 rounded-lg transition ease-in-out py-2 border-none bg-blue-700 text-white hover:bg-blue-400 w-full uppercase shadow-sm hover:shadow-md active:bg-blue-800 shadow-gray-500 text-sm sm:text-base">Sign in</button>
 
-                        <div className="my-5 flex items-center before:border-t before:flex-1  before:border-gray-300  after:border-t after:flex-1  after:border-gray-300">
+                        <div className="mt-5 mb-3 flex items-center before:border-t before:flex-1  before:border-gray-300  after:border-t after:flex-1  after:border-gray-300">
                         <p className="text-center mx-4 font-semibold">OR</p>
-                    </div>
-                        <OAuth/>
+                    </div> 
+                        <div className="flex justify-center items-center space-x-6 mb-4">
+                            <OAuth/>
+                            <OTest/>
+                        </div>
+                       
                     </form>
                 </div>
            </div>

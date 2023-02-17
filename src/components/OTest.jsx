@@ -1,21 +1,24 @@
-import {FcGoogle} from 'react-icons/fc';
-import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import {MdFacebook} from 'react-icons/md';
+//import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { toast } from 'react-toastify';
 import { doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import { useNavigate } from 'react-router';
+//import { getAuth, signInWithRedirect, GoogleAuthProvider, getRedirectResult,} from "firebase/auth";
+
+import { getAuth, FacebookAuthProvider, signInWithPopup} from 'firebase/auth';
 
 
-const OAuth = () => {
+const OTest = () => {
     const navigate = useNavigate();
-    const googleSubmit= async ()=>{
-
+    
+    //Handle the Submit
+    const facebookSubmit= async ()=>{
         try{
             const auth = getAuth();
-            const provider = new GoogleAuthProvider();
+            const provider = new FacebookAuthProvider();
             const result = await signInWithPopup(auth, provider);
-             
-
+            
             // // This gives you a Google Access Token. You can use it to access the Google API.
             // const credential = GoogleAuthProvider.credentialFromResult(result);
             // const token = credential.accessToken;
@@ -34,15 +37,15 @@ const OAuth = () => {
           navigate('/profile');
         }
         catch(error){
-            toast.error('Could not authenticate with Google');
+            toast.error("there is an error");
         }
     }
 
     return ( 
-        <button type='button' onClick={googleSubmit} className=" transition ease-in-out  border-none  text-white b shadow-sm hover:shadow-md  shadow-gray-500">
-            <FcGoogle className='text-3xl  rounded-full'/>
+        <button type='button'  className='hover:cursor-pointer transition ease-in-out shadow-sm hover:shadow-md'>
+            <MdFacebook onClick={facebookSubmit} className='rounded-3xl text-blue-700 text-3xl shadow-md border-0'/>
         </button>
      );
 }
  
-export default OAuth;
+export default OTest;

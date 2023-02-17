@@ -82,10 +82,7 @@ const UserProfile = () => {
                 })
             });
             setListings(listings);
-            console.log(listings);
         };
-
-
         fetchListings();
      }, [auth.currentUser.uid])
 
