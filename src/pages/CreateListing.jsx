@@ -415,7 +415,7 @@ const onSubmit=async (e)=>{
                     </div>
 
                     <button type="submit" 
-                        className="text-xs sm:text-sm text-primary text-center mt-2 px-6 rounded transition ease-in-out pt-3 border-b-8 border-b-primary font-semibold bg-transparent  hover:bg-blue-400 hover:text-white w-full uppercase  hover:shadow-md active:bg-blue-800">Create
+                        className="text-xs sm:text-sm text-primary text-center mt-2 px-6 rounded transition ease-in-out pt-3 border-b-8 border-b-primary font-semibold bg-transparent  hover:bg-blue-400 hover:text-white w-full uppercase  hover:shadow-md active:bg-blue-800">Done
                     </button>
                 </form>
         </div>

@@ -1,10 +1,11 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {getAuth, updateProfile} from "firebase/auth";
-import { doc, updateDoc } from 'firebase/firestore';
+import { collection, doc, getDocs, orderBy, query, updateDoc, where } from 'firebase/firestore';
 import { db } from '../firebase';
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import {IoMdHome} from 'react-icons/io';
+import ListingCard from "../components/ListingItem";
 
 
   //Defining Styles
@@ -13,6 +14,8 @@ import {IoMdHome} from 'react-icons/io';
   const applyStyle="xs:text-xs text-blue-700 ml-1 cursor-pointer transition ease-in-out duration-200 hover:text-blue-800";
 
 const UserProfile = () => {
+
+    const [listings, setListings]= useState(null);
     const navigate = useNavigate();
     //Getting User Details from Authentication
 
@@ -57,6 +60,37 @@ const UserProfile = () => {
             }
     }
      const editRef = useRef();
+
+     //UseEffect to get Listings from Db
+     useEffect(() => {
+        const fetchListings= async ()=>{
+            const listingRef = collection(db, "listings");
+           
+            //Making a query.
+            const q = query(
+                    listingRef, 
+                    where("userRef", "==", auth.currentUser.uid), 
+                    orderBy("timestamp", "desc"));
+
+            const querySnap = await getDocs(q);
+            let listings = [];
+
+            querySnap.forEach((doc)=>{
+                return listings.push({
+                    id:doc.id,
+                    data:doc.data()
+                })
+            });
+            setListings(listings);
+            console.log(listings);
+        };
+
+
+        fetchListings();
+     }, [auth.currentUser.uid])
+
+
+
     return (  
         <main className="h-screen">
             <section className="md:w-[50%] mx-auto px-4 flex flex-col justify-center">         
@@ -103,6 +137,21 @@ const UserProfile = () => {
                     </button>
                 </Link>   
            </section>
+
+           <div className="max-w-6xl px-6 mt-2 mx-auto">
+                    {listings && listings.length > 0 && (
+                        <div>
+                            <h1 className="text-center font-bold text-base sm:text-2xl">My Listings</h1>
+                                
+                            <ul>
+                                {listings.map((listing)=>(
+                                    
+                                    <ListingCard listing={listing} key={listing.id}/>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+           </div>
          </main>
      );
 }
