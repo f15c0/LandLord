@@ -138,15 +138,18 @@ const UserProfile = () => {
                 </Link>   
            </section>
 
-           <div className="max-w-6xl px-6 mt-2 mx-auto">
+           <div className="max-w-6xl mt-2 mx-auto">
                     {listings && listings.length > 0 && (
                         <div>
                             <h1 className="text-center font-bold text-base sm:text-2xl">My Listings</h1>
                                 
-                            <ul>
+                            <ul className="sm:grid sm:grid-cols-2  lg:grid-cols-3  xl:grid-cols-4 s my-6 ">
                                 {listings.map((listing)=>(
                                     
-                                    <ListingCard listing={listing} key={listing.id}/>
+                                    <ListingCard 
+                                        listing={listing.data} 
+                                        key={listing.id} 
+                                        id={listing.id}/>
                                 ))}
                             </ul>
                         </div>
