@@ -9,6 +9,7 @@ import { getAuth } from "firebase/auth";
 import { v4 as uuidv4 } from 'uuid';
 import {addDoc, collection, serverTimestamp} from "firebase/firestore";
 import { db } from "../firebase";
+import { useNavigate } from "react-router-dom";
 
 
 const Listing = () => {
@@ -16,7 +17,10 @@ const Listing = () => {
 const auth = getAuth();
 
 //setting Geolocation State
-const [geoLocationEnabled, setGeoLocationEnabled]=useState(true)
+const [geoLocationEnabled, setGeoLocationEnabled]=useState(true);
+
+//Navigate
+const navigate= useNavigate();
 
 //Onchange function to handle input form data
 const onChange =(e)=>{
@@ -114,15 +118,18 @@ const onSubmit=async (e)=>{
             ...formData,
                 imgUrls,
                 timestamp:serverTimestamp(),
+                userRef: auth.currentUser.uid,
+                author: auth.currentUser.displayName
         };
 
         delete formDataCopy.images;
         !formDataCopy.offer && delete formDataCopy.discount;
         const docRef = await addDoc(collection(db, "listings"), formDataCopy); 
-        if(docRef){
+        
             setLoading(false);
-           toast.success("listing successful")
-        }
+           toast.success("listing successful");
+           navigate(`/category/${formDataCopy.type}/${docRef.id}`)
+        
 }    
 
 
