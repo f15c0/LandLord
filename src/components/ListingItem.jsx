@@ -1,50 +1,30 @@
 import { Link } from "react-router-dom";
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
 import Moment from 'react-moment';
 import {ImLocation2} from "react-icons/im";
-import { useState } from "react";
+import {CiHeart} from 'react-icons/ci'
 
 
 const ListingCard = ({listing, id}) => {
 
-    const [loading, setLoading] =useState(false);
-    // function Box({ children }) {
-    //     return (
-    //         <div
-    //             style={{
-    //                 border: '1px solid #ccc',
-    //                 display: 'block',
-    //                 lineHeight: 2,
-    //                 padding: '1rem',
-    //                 marginBottom: '0.5rem',
-    //                 width: 100,
-    //             }}
-    //         >
-    //             {children}
-    //         </div>
-    //     )
-    // }
 
     
     return ( 
 
-        <li className="relative bg-white flex flex-col py-2 my-2 justify-between items-center shadow-md hover:shadow-xl rounded-xl transition-shadow duration-150 overflow-hidden m-[10px]">
+        <li className="relative bg-white flex flex-col py-2 my-2 justify-between items-center shadow-md hover:shadow-xl rounded-xl transition-shadow duration-150 overflow-hidden m-[10px]">    
             <Link className="contents" to={`/category/${listing.type}/${id}`}>
-                {/* <h1>{title || <Skeleton />}</h1> */}
-              {( <img src={listing.imgUrls[0]} className="h-[195px] w-full object-cover hover:scale-105 transition-scale duration-200 ease-in-out"
+              <img src={listing.imgUrls[0]} className="h-[195px] w-full object-cover hover:scale-105 transition-scale duration-200 ease-in-out"
                     loading="lazy"
-                    alt={listing.name}/>) || <Skeleton height={170}/>}
-                
-                   
-                
+                    alt={listing.name}/>  
+                <CiHeart className="text-3xl absolute right-2 top-[49%] shadow-sm hover:shadow-md hover:cursor-pointer hover:text-yellow-400 text-white"/>
                 <Moment fromNow className="absolute top-2 left-2 uppercase text-xs font-semibold bg-blue-800 text-white px-2 py-1 shadow-lg border-0">{listing.timestamp?.toDate()}</Moment>
+                
                 <div className="w-full p-[10px]">
                     <div className="flex items-center space-x-1">
                         <ImLocation2 className="text-emerald-700 sm:h-5 sm:w-5 mb-[2px]"/>
                         <span className="text-sm truncate text-gray-600 font-medium">Address:{listing.address}</span>
+                        
                     </div>
-
+                   
                     <h2 className="text-xl mt-0 text-dark font-semibold">{listing.name}</h2>
                     <p className="text-[#457b9d] text-sm mt-0 font-medium">
                     Gh¢ {parseInt(listing.price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -58,8 +38,6 @@ const ListingCard = ({listing, id}) => {
                     </div>
                     <p className="sm:text-sm text-xs text-gray-200">{listing.author}</p>
                 </div>
-               
-               
             </Link>
         </li>
      );

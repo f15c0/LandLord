@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import {IoMdHome} from 'react-icons/io';
 import ListingCard from "../components/ListingItem";
+import ListingSkeleton from "../components/ListingSkeleton";
 
 
   //Defining Styles
@@ -14,6 +15,8 @@ import ListingCard from "../components/ListingItem";
   const applyStyle="xs:text-xs text-blue-700 ml-1 cursor-pointer transition ease-in-out duration-200 hover:text-blue-800";
 
 const UserProfile = () => {
+
+    const [loading, setLoading]= useState(true);
 
     const [listings, setListings]= useState(null);
     const navigate = useNavigate();
@@ -82,9 +85,11 @@ const UserProfile = () => {
                 })
             });
             setListings(listings);
+           
         };
         fetchListings();
-     }, [auth.currentUser.uid])
+        setLoading(false);
+     }, [auth.currentUser.uid]);
 
 
 
@@ -136,13 +141,11 @@ const UserProfile = () => {
            </section>
 
            <div className="max-w-6xl mt-2 mx-auto">
-                    {listings && listings.length > 0 && (
                         <div>
                             <h1 className="text-center font-bold text-base sm:text-2xl">My Listings</h1>
-                                
                             <ul className="sm:grid sm:grid-cols-2  lg:grid-cols-3  xl:grid-cols-4 s my-6 ">
-                                {listings.map((listing)=>(
-                                    
+                                {loading && <ListingSkeleton/>}
+                                {listings && listings.map((listing)=>(
                                     <ListingCard 
                                         listing={listing.data} 
                                         key={listing.id} 
@@ -150,7 +153,6 @@ const UserProfile = () => {
                                 ))}
                             </ul>
                         </div>
-                    )}
            </div>
          </main>
      );

@@ -12,10 +12,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import SecurePage from './components/SecurePage';
 import Listing from './pages/CreateListing';
 import Layout from './Layout';
+import { SkeletonTheme } from 'react-loading-skeleton';
 
 function App() {
   return (
     <>
+    <SkeletonTheme>
      <BrowserRouter>
      <Layout>
           <Routes>
@@ -33,6 +35,7 @@ function App() {
         </Routes>
       </Layout>
       </BrowserRouter>
+      </SkeletonTheme>
       
       {/* Toast goes here */}
       <ToastContainer
