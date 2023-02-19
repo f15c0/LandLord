@@ -2,7 +2,6 @@
 import {RiHomeSmileLine} from 'react-icons/ri';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-import OTest from '../components/OTest';
 
 
 const Home = () => {

@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
 import Moment from 'react-moment';
 import {ImLocation2} from "react-icons/im";
-import {CiHeart} from 'react-icons/ci'
+import {CiHeart} from 'react-icons/ci';
+import {FaTrash} from 'react-icons/fa';
+import {MdModeEditOutline} from "react-icons/md";
 
-
-const ListingCard = ({listing, id}) => {
+const ListingCard = ({listing, id, onDelete, onEdit}) => {
 
 
     
@@ -21,7 +22,7 @@ const ListingCard = ({listing, id}) => {
                 <div className="w-full p-[10px]">
                     <div className="flex items-center space-x-1">
                         <ImLocation2 className="text-emerald-700 sm:h-5 sm:w-5 mb-[2px]"/>
-                        <span className="text-sm truncate text-gray-600 font-medium">Address:{listing.address}</span>
+                        <span className="text-sm truncate text-gray-600 font-medium">{listing.address}</span>
                         
                     </div>
                    
@@ -39,6 +40,14 @@ const ListingCard = ({listing, id}) => {
                     <p className="sm:text-sm text-xs text-gray-200">{listing.author}</p>
                 </div>
             </Link>
+            <div className="">
+                     {/* Delete */}
+                     <FaTrash className="absolute text-red-700 bottom-6 right-2 hover:cursor-pointer hover:shadow-md text-md sm:text-lg transition duration-150 ease-in-out"/>
+
+                     {/* Edit */}
+                     <MdModeEditOutline className="absolute text-blue-700 bottom-6 right-9 transition duration-150 ease-in-out hover:cursor-pointer hover:shadow-md text-md sm:text-lg"/>
+            </div>
+            
         </li>
      );
 }

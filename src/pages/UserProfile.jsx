@@ -85,13 +85,18 @@ const UserProfile = () => {
                 })
             });
             setListings(listings);
-           
+            setLoading(false);
         };
         fetchListings();
-        setLoading(false);
+       
      }, [auth.currentUser.uid]);
 
+     const onDelete = ()=>{
 
+     }
+     const onEdit = ()=>{
+
+     }
 
     return (  
         <main className="h-screen">
@@ -149,7 +154,10 @@ const UserProfile = () => {
                                     <ListingCard 
                                         listing={listing.data} 
                                         key={listing.id} 
-                                        id={listing.id}/>
+                                        id={listing.id}
+                                        onDelete={()=>onDelete(listing.id)}
+                                        onEdit={()=>onEdit(listing.id)}
+                                        />
                                 ))}
                             </ul>
                         </div>
