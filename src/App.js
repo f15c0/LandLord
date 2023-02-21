@@ -11,8 +11,10 @@ import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SecurePage from './components/SecurePage';
 import Listing from './pages/CreateListing';
+import NotFound from './pages/404';
 import Layout from './Layout';
 import { SkeletonTheme } from 'react-loading-skeleton';
+import EditListing from './pages/EditListing';
 
 function App() {
   return (
@@ -32,6 +34,10 @@ function App() {
               <Route path='/sign-in' element={<SignIn/>}/>
               <Route path='/sign-up' element={<SignUp/>}/>
               <Route exact={true} path='/forgot-password' element={<ForgotPass/>}/>
+              <Route path='/profile' element={<SecurePage/>}>
+               <Route path='/profile/edit-listing/:listingId' element={<EditListing/>}/>
+             </Route>
+             <Route path='*' element={<NotFound/>}></Route>
         </Routes>
       </Layout>
       </BrowserRouter>

@@ -92,7 +92,7 @@ const UserProfile = () => {
      }, [auth.currentUser.uid]);
 
      const onEdit = (listingID)=>{
-            navigate(`/edit-listing/${listingID}`);
+            navigate(`./edit-listing/${listingID}`);
      }
      
     //  Delete Listing

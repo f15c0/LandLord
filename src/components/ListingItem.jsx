@@ -33,8 +33,8 @@ const ListingCard = ({listing, id, onDelete, onEdit}) => {
                     </p>
                     <div>
                         <div className="flex items-center text-sm mt-1 font-medium space-x-3">
-                                <p className="text-xs">{listing.bedrooms > 1 ? `${listing.bedrooms} Beds`: "1 Bed"}</p>
-                                <p className="text-xs">{listing.bathrooms > 1 ? `${listing.bathrooms} Baths`: "1 Bath"}</p>
+                                <p className="text-xs">{(listing.bedroom > 1) ? `${listing.bedroom} Beds`: "1 Bed"}</p>
+                                <p className="text-xs">{listing.bathroom > 1 ? `${listing.bathroom} Baths`: "1 Bath"}</p>
                         </div>
                     </div>
                     <p className="sm:text-sm text-xs text-gray-200">{listing.author}</p>
