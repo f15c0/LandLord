@@ -42,10 +42,14 @@ const ListingCard = ({listing, id, onDelete, onEdit}) => {
             </Link>
             <div className="">
                      {/* Delete */}
-                     <FaTrash className="absolute text-red-700 bottom-6 right-2 hover:cursor-pointer hover:shadow-md text-md sm:text-lg transition duration-150 ease-in-out"/>
+                     {onDelete && <FaTrash 
+                     onClick={()=>onDelete(listing.id)}
+                     className="absolute text-red-700 bottom-6 right-2 hover:cursor-pointer hover:shadow-md text-md sm:text-lg transition duration-150 ease-in-out"/>}
 
                      {/* Edit */}
-                     <MdModeEditOutline className="absolute text-blue-700 bottom-6 right-9 transition duration-150 ease-in-out hover:cursor-pointer hover:shadow-md text-md sm:text-lg"/>
+                     <MdModeEditOutline 
+                     onClick={()=>onEdit(listing.id)}
+                     className="absolute text-blue-700 bottom-6 right-9 transition duration-150 ease-in-out hover:cursor-pointer hover:shadow-md text-md sm:text-lg"/>
             </div>
             
         </li>

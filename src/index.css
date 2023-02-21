@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Hide scrollbar for Edge and IE */
+  * {
+    -ms-overflow-style: none;
+  }
+
+  /* Enable scrolling with mouse or touch */
+.scroll-container {
+    -webkit-overflow-scrolling: touch;
+  }
