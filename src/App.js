@@ -15,6 +15,7 @@ import NotFound from './pages/404';
 import Layout from './Layout';
 import { SkeletonTheme } from 'react-loading-skeleton';
 import EditListing from './pages/EditListing';
+import ListingView from './pages/Listing';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
                <Route path='/profile/edit-listing/:listingId' element={<EditListing/>}/>
              </Route>
              <Route path='*' element={<NotFound/>}></Route>
+             <Route path='/category/:catName/:listingId' element={<ListingView/>}/>
         </Routes>
       </Layout>
       </BrowserRouter>
