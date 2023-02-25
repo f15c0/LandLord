@@ -52,8 +52,9 @@ SwiperCore.use([Autoplay, Pagination, Navigation])
                     {listing?.imgUrls.map((url, index) => (
                         <SwiperSlide key={index}>
                         <div className="relative w-full sm:h-[300px] h-[200px] overflow-hidden" 
-                        style={{ background: `url(${listing.imgUrls[index]}) center no-repeat`, 
-                                    backgroundSize:"cover" }} />
+                                            style={{ background: `url(${listing.imgUrls[index]}) center no-repeat`, 
+                                                        backgroundSize:"cover" }} >
+                                    </div>
                         </SwiperSlide>
                     ))}
             </Swiper>

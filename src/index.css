@@ -16,3 +16,12 @@
 .scroll-container {
     -webkit-overflow-scrolling: touch;
   }
+
+  .swiper-pagination-bullet {
+    background-color: red;
+  }
+
+  .swiper-pagination-bullet-active {
+    background-color: red;
+  }
+  

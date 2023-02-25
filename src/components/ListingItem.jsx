@@ -4,20 +4,47 @@ import {ImLocation2} from "react-icons/im";
 import {CiHeart} from 'react-icons/ci';
 import {FaTrash} from 'react-icons/fa';
 import {MdModeEditOutline} from "react-icons/md";
+//Import Swiper React components
+import { Swiper, SwiperSlide } from 'swiper/react';
+// import Swiper core and required modules
+import SwiperCore, {EffectFade, Navigation, Pagination, Autoplay } from 'swiper';
+
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/bundle';
 
 const ListingCard = ({listing, id, onDelete, onEdit}) => {
-
-
-    
+    SwiperCore.use([Pagination, Navigation])
     return ( 
 
-        <li className="relative bg-white flex flex-col py-2 my-2 justify-between items-center shadow-md hover:shadow-xl rounded-xl transition-shadow duration-150 overflow-hidden m-[10px]">    
+        <li className="relative bg-white flex flex-col py-2 my-2 justify-between items-center shadow-md hover:shadow-xl rounded-xl transition-shadow duration-150 overflow-hidden m-[10px]">   
             <Link className="contents" to={`/category/${listing.type}/${id}`}>
+            <Swiper 
+                grabCursor={true}
+                slidesPerView={1}
+                slidesPerGroup={1}
+                pagination={true} 
+                modules={[Pagination, EffectFade]}
+                autoplay={{delay:3000}}
+                className="w-full">
+                {listing.imgUrls.map((url,index)=>(
+                        <SwiperSlide key={index}>
+                        <img src={url} className="h-[220px] w-full object-cover  hover:scale-105 transition-scale duration-200 ease-in-out"
+                        loading="lazy"
+                        alt={listing.name}/>            
+                </SwiperSlide>
+                ))}
+                    
+            </Swiper>
+{/* 
               <img src={listing.imgUrls[0]} className="h-[195px] w-full object-cover hover:scale-105 transition-scale duration-200 ease-in-out"
                     loading="lazy"
-                    alt={listing.name}/>  
-                <CiHeart className="text-3xl absolute right-2 top-[49%] shadow-sm hover:shadow-md hover:cursor-pointer hover:text-yellow-400 text-white"/>
-                <Moment fromNow className="absolute top-2 left-2 uppercase text-xs font-semibold bg-blue-800 text-white px-2 py-1 shadow-lg border-0">{listing.timestamp?.toDate()}</Moment>
+                    alt={listing.name}/>   */}
+
+    
+                <CiHeart className="text-3xl absolute z-10 right-2 top-[49%] shadow-sm hover:shadow-md hover:cursor-pointer hover:text-yellow-400 text-white"/>
+                <Moment fromNow className="absolute z-10 top-2 left-2 uppercase text-xs font-semibold bg-blue-800 text-white px-2 py-1 shadow-lg border-0">{listing.timestamp?.toDate()}</Moment>
                 
                 <div className="w-full p-[10px]">
                     <div className="flex items-center space-x-1">
