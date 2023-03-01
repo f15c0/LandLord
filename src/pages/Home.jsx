@@ -1,13 +1,14 @@
-// import { useState } from 'react';
+import { useContext } from 'react';
 import {RiHomeSmileLine} from 'react-icons/ri';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Box from '../components/Box';
-
+import { UserContext } from '../contexts/userContext';
+import { Button } from '@mantine/core';
 
 const Home = () => {
 
-
+    const user = useContext(UserContext);
     // const [load, setLoad]= useState(false);
     
     const welcome= "Welcome | Akwaaba! | WoéZɔr!";
@@ -25,7 +26,10 @@ const Home = () => {
                             <Box/>
                             <Box/>
                      </div>
-                  
+                    <div>
+                        Under Construction!...
+                    </div>
+                    <Button  variant="light" color="teal"  >Click me!</Button>
         </section>
      );
 }

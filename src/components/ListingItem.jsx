@@ -24,13 +24,12 @@ const ListingCard = ({listing, id, onDelete, onEdit}) => {
                 grabCursor={true}
                 slidesPerView={1}
                 slidesPerGroup={1}
-                pagination={true} 
+                pagination={{ clickable: true }} 
                 modules={[Pagination, EffectFade]}
-                autoplay={{delay:3000}}
-                className="w-full">
+                className="w-full h-full">
                 {listing.imgUrls.map((url,index)=>(
-                        <SwiperSlide key={index}>
-                        <img src={url} className="h-[220px] w-full object-cover  hover:scale-105 transition-scale duration-200 ease-in-out"
+                        <SwiperSlide key={index} className="flex justify-center items-center">
+                        <img src={url} className="h-[220px] block w-full object-cover  hover:scale-105 transition-scale duration-200 ease-in-out"
                         loading="lazy"
                         alt={listing.name}/>            
                 </SwiperSlide>
